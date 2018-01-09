@@ -2,6 +2,10 @@
 #include <string>
 using namespace std;
 
+/*
+*  Determine if a string has all unique characters
+*  g++ test_unique.cpp -std=c++11
+*/
 
 bool has_unique(string & teststring) {
     int letters[256];
@@ -18,7 +22,7 @@ bool has_unique(string & teststring) {
 
 int main() {
     string my_teststring = "myteststring";
-    cout << my_teststring << " has unique " << has_unique(my_teststring) << endl; 
+    cout << my_teststring << " has unique " << (has_unique(my_teststring)? "False" : "True") << endl; 
     return 0;
 }
 
