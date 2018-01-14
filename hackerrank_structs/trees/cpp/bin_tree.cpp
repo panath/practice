@@ -70,6 +70,19 @@ public:
     return node->key;
 };
 
+
+void assertEquals(const std::vector<int> & expected, const std::vector actual) {
+    if (expected != actual) {
+         std::cout << "Expected : ";
+         for (int num : expected) std::cout << num << " ";
+         std::cout << std::endl;
+
+         std::cout << "Actual : ";
+         for (int num : actual) std::cout << num << " ";
+         std::cout << std::endl;
+    }
+}
+
 int main() {
 
 }
