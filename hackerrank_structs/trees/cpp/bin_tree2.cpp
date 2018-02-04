@@ -37,6 +37,13 @@ Node * InsertNode(Node *root, int data) {
     return root;
 }
 
+Node *findMin(Node *root) {
+     if (root == nullptr || root->left == nullptr)
+         return root;
+     else 
+         return findMin(root->left);
+}
+
 void BreadFSearch(Node *root) {
     if (root == nullptr) {
         return;
@@ -71,6 +78,40 @@ void PreOrder(Node *root) {
     cout << root->data << " " ;
     PreOrder(root->left);
     PreOrder(root->right);
+}
+
+struct Node* Delete(Node *root, int data) {
+    if (root == nullptr)
+        return root;
+    else if (data < root->data)
+        root->left = Delete(root->left, data);
+    else if (data > root->data)
+        root->right = Delete(root->right, data);
+    else {
+        if ((root->left == nullptr) && (root->right == nullptr)) {
+            delete root;
+            root = nullptr;
+            return root;
+        }
+        else if (root->left == nullptr) {
+            Node *temp = root;
+            root = root->right;
+            delete temp;
+            return root;
+        }
+        else if (root->right == nullptr) {
+            Node *temp = root;
+            root = root->right;
+            delete temp;
+            return root;
+        }
+        else {
+            Node *temp = findMin(root->right);
+            root->data = temp->data;
+            root->right = Delete(root->right, data);
+        }
+    }
+    return root;  
 }
 
 int height(Node *root) {
@@ -118,4 +159,6 @@ int main() {
   cout << endl;
   cout << "Is Binary Search Tree " << endl;
   cout << (IsBinarySearchTree(root) ?"true":"false") << endl;
+  cout << "findMin " << endl;
+  cout << findMin(root)->data << endl;
 }
