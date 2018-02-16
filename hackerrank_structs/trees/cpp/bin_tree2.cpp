@@ -62,6 +62,38 @@ void BreadFSearch(Node *root) {
 
 }
 
+Node *find(Node *root, int data) {
+    if (root == nullptr)
+        return nullptr;
+    if (root->data == data)
+        return root;
+    else if (root->data > data)
+        return find(root->left, data);
+    else
+        return find(root->right, data);
+}
+
+Node *GetSuccessor(Node *root, int data) {
+    Node * current = find(root, data);
+    if (current == nullptr)
+        return nullptr;
+    if (current->right != nullptr)
+        return findMin(current->right);
+    else {
+        Node * successor = nullptr;
+        Node * ancestor = root;
+        while (ancestor != current ) {
+            if (current->data < ancestor->data) {
+                successor = ancestor;
+                ancestor = ancestor->left
+            }
+            else
+                ancestor = ancestor->right;
+        }
+        return successor;
+    }
+}
+
 void PostOrder(Node *root) {
     if (root == nullptr) {
         return;
