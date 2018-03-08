@@ -3,10 +3,9 @@
 using namespace std;
 
 /*
-*  Determine if a string has all unique characters
+*  Determines if a string has all unique characters
 *  g++ test_unique.cpp -std=c++11
 */
-
 bool has_unique(string & teststring) {
     int letters[256];
     for (char a : teststring) {
