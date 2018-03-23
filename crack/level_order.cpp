@@ -12,8 +12,8 @@ struct TreeNode{
     int data;
     TreeNode(int value):left(nullptr), right(nullptr), data(value) {}
     ~TreeNode() {
-        delete left;
-        delete right;
+        //delete left;
+        //delete right;
     }
 };
 
@@ -65,6 +65,17 @@ int height(TreeNode* node)
         else return(rheight+1);
     }
 }
+
+
+void deleteTree(TreeNode *node) {
+    if (node == nullptr)
+        return;
+
+    deleteTree(node->left);
+    deleteTree(node->right);
+    cout << "Deleting node " << node->data << endl;
+    delete node;
+}
  
 /* Helper function that allocates a new node with the
    given data and NULL left and right pointers. */
@@ -86,6 +97,7 @@ int main()
  
     printf("Level Order traversal of binary tree is \n");
     printLevelOrder(root);
+    deleteTree(root);
  
     return 0;
 }
