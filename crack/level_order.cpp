@@ -11,10 +11,7 @@ struct TreeNode{
     TreeNode *right;
     int data;
     TreeNode(int value):left(nullptr), right(nullptr), data(value) {}
-    ~TreeNode() {
-        //delete left;
-        //delete right;
-    }
+    ~TreeNode() {}
 };
 
  
